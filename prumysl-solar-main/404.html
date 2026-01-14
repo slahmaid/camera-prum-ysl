@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - الصفحة غير موجودة | Prumysl</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+        // Handle clean URLs - redirect .html extensionless URLs for GitHub Pages
+        (function() {
+            var path = window.location.pathname;
+            var search = window.location.search;
+            var hash = window.location.hash;
+            
+            // List of valid pages (without .html extension)
+            var validPages = {
+                '': 'index.html',
+                'index': 'index.html',
+                'moka': 'moka.html',
+                'dio-moka': 'dio-moka.html',
+                'assas': 'assas.html',
+                'garde-corps': 'garde-corps.html',
+                'saqr': 'saqr.html',
+                'about': 'about.html',
+                'contact': 'contact.html',
+                'faq': 'faq.html',
+                'return-policy': 'return-policy.html',
+                'terms': 'terms.html',
+                'thank-you': 'thank-you.html'
+            };
+            
+            // Remove leading slash and trailing slash
+            var cleanPath = path.replace(/^\/|\/$/g, '');
+            
+            // If path is empty or 'index', redirect to index.html
+            if (!cleanPath || cleanPath === 'index') {
+                window.location.replace('/index.html' + search + hash);
+                return;
+            }
+            
+            // Check if it's a valid page without .html
+            if (validPages.hasOwnProperty(cleanPath)) {
+                window.location.replace('/' + validPages[cleanPath] + search + hash);
+                return;
+            }
+            
+            // If it ends with .html, it's already correct, show 404
+            // Otherwise, it's a real 404
+        })();
+    </script>
+</head>
+<body>
+    <div style="text-align: center; padding: 100px 20px; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h1 style="font-size: 4rem; margin-bottom: 20px; color: #ff6b35;">404</h1>
+        <h2 style="font-size: 2rem; margin-bottom: 30px; color: #333;">الصفحة غير موجودة</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 40px; color: #666;">عذراً، الصفحة التي تبحث عنها غير موجودة.</p>
+        <a href="/index.html" style="display: inline-block; padding: 15px 40px; background: #ff6b35; color: white; text-decoration: none; border-radius: 5px; font-size: 1.1rem; transition: background 0.3s;">
+            العودة إلى الصفحة الرئيسية
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# GitHub Pages Configuration
+# This file enables Jekyll processing for GitHub Pages
+
+# Jekyll settings
+plugins:
+  - jekyll-redirect-from
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - STRUCTURE.md
+  - PROJECT-INFO.md
+  - .gitignore
+  - .htaccess
+
+# Include all files
+include:
+  - _redirects
+
+# Permalinks - remove .html extension
+permalink: /:title/
+
+# Base URL (leave empty for root domain)
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
