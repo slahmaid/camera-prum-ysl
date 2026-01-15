@@ -1,11 +1,20 @@
 /* --- 1. RESET & BASE --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
 body {
     font-family: 'Cairo', sans-serif;
     background-color: #f9f9f9;
     color: #333;
     overflow-x: hidden;
     line-height: 1.6;
+    width: 100%;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 a { text-decoration: none; color: inherit; }
 .container { width: 90%; max-width: 1100px; margin: 0 auto; }
@@ -18,6 +27,13 @@ a { text-decoration: none; color: inherit; }
     padding: 10px;
     font-size: 13px;
     font-weight: 700;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+.announcement-bar p {
+    margin: 0;
+    padding: 0;
 }
 
 /* --- 3. HEADER --- */
@@ -138,8 +154,29 @@ a { text-decoration: none; color: inherit; }
 .gift-text { font-size: 12px; color: #28a745; font-weight: 700; }
 .input-group { margin-bottom: 20px; }
 .input-group label { display: block; margin-bottom: 8px; font-weight: 700; color: #444; }
-.input-group input { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Cairo', sans-serif; font-size: 16px; }
-.input-group input:focus { outline: none; border-color: #e63946; box-shadow: 0 0 5px rgba(230, 57, 70, 0.2); }
+.input-group input,
+.input-group textarea { 
+    width: 100%; 
+    padding: 12px 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    font-family: 'Cairo', sans-serif; 
+    font-size: 16px; 
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+}
+.input-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+.input-group input:focus,
+.input-group textarea:focus { 
+    outline: none; 
+    border-color: #e63946; 
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.2); 
+}
 .btn-primary, .btn-submit { background-color: #e63946; color: #fff; text-decoration: none; padding: 12px 25px; border-radius: 6px; font-weight: 700; font-size: 16px; transition: 0.3s; border: none; cursor: pointer; display: inline-block; }
 .btn-hero { padding: 15px 40px; font-size: 18px; border: 2px solid #e63946; }
 .btn-primary:hover, .btn-submit:hover { background-color: #d62839; transform: translateY(-2px); }
@@ -540,6 +577,126 @@ html {
     touch-action: manipulation;
 }
 
+/* Ensure all buttons and interactive elements are touch-friendly */
+button,
+a,
+input[type="submit"],
+input[type="button"],
+.btn-primary,
+.btn-submit,
+.btn-view,
+.btn-whatsapp,
+.btn-hero {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Prevent text selection on buttons for better mobile UX */
+button,
+.btn-primary,
+.btn-submit,
+.btn-view,
+.btn-whatsapp,
+.btn-hero {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Better RTL support for mobile */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .container {
+    direction: rtl;
+}
+
+/* Prevent horizontal scrolling */
+body,
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure all sections are mobile-friendly */
+section {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Better mobile typography */
+@media (max-width: 768px) {
+    h1 { font-size: 1.8rem; line-height: 1.3; word-wrap: break-word; }
+    h2 { font-size: 1.6rem; line-height: 1.3; word-wrap: break-word; }
+    h3 { font-size: 1.3rem; line-height: 1.4; word-wrap: break-word; }
+    h4 { font-size: 1.1rem; line-height: 1.4; word-wrap: break-word; }
+    p { line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; }
+    
+    /* Ensure links are easily tappable */
+    a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    /* Better spacing for mobile */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Better table responsiveness */
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* Improve form elements for mobile */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 6px;
+}
+
+/* Better spacing for mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    /* Ensure no element causes horizontal scroll */
+    * {
+        max-width: 100%;
+    }
+    
+    /* Better textarea for mobile */
+    .input-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 14px 15px;
+        min-height: 140px;
+        line-height: 1.6;
+    }
+}
+
 /* Optimize animations */
 .product-item,
 .benefit-card,
@@ -648,12 +805,19 @@ img {
     .form-wrapper {
         padding: 25px 20px;
     }
-    .input-group input {
+    .input-group input,
+    .input-group textarea {
         padding: 14px 15px;
         font-size: 16px; /* Prevents zoom on iOS */
         min-height: 48px; /* Touch-friendly */
         -webkit-appearance: none;
+        appearance: none;
         border-radius: 8px;
+        width: 100%;
+    }
+    .input-group textarea {
+        min-height: 140px;
+        line-height: 1.6;
     }
     .input-group input:invalid:not(:placeholder-shown) {
         border-color: #e63946;
@@ -800,12 +964,49 @@ img {
     }
 }
 
+/* Additional mobile enhancements for very small screens */
 @media (max-width: 480px) {
     /* Extra small devices */
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        font-size: 15px;
+    }
+    
     .announcement-bar {
         padding: 6px 8px;
         font-size: 11px;
         line-height: 1.4;
+        word-wrap: break-word;
+    }
+    
+    /* Ensure all text is readable */
+    p, li, span {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Better form inputs for very small screens */
+    .input-group input,
+    .input-group textarea {
+        font-size: 16px; /* Critical: prevents iOS zoom */
+        padding: 12px 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure all text wraps properly */
+    * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    /* Better container padding for very small screens */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .hero-section {
         min-height: 400px;
@@ -882,6 +1083,23 @@ img {
     }
 }
 
+/* Tablet and small desktop optimizations */
+@media (min-width: 481px) and (max-width: 767px) {
+    .container {
+        width: 92%;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
 @media (min-width: 768px) {
     .site-header { padding: 0 8%; height: 90px; }
     .hero-section { height: 650px; }
@@ -892,4 +1110,9 @@ img {
     .feature-row:nth-child(even) { flex-direction: row-reverse; }
     .feature-text, .feature-image { flex: 1; }
     .feature-text h3 { font-size: 1.8rem; }
+    
+    /* Hide floating WhatsApp on desktop (optional) */
+    .floating-whatsapp {
+        display: none;
+    }
 }
